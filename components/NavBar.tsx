@@ -7,12 +7,15 @@ interface IComponentProps {
 }
 interface IStyledProps {
     readonly  current: any,
+    readonly display: any,
 }
 
 const Container = withProps<IStyledProps>()(styled.section)`
     position: fixed;
         width: 100%;
     height: 100vh;
+    
+    display: transform: ${({display}: IStyledProps) => display ? `none` : `block`};
   top: 0;
   left: 0;
   margin: 0;
@@ -44,7 +47,7 @@ const NavBar = React.memo<IComponentProps>(({isVisible}) => {
 
 
     return (
-        <Container current={isVisible}>
+        <Container current={isVisible} display={isVisible}>
             <InnerDivStyled>
                 Menu
             </InnerDivStyled>
