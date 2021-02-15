@@ -8,6 +8,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@svgr/webpack": "^5.5.0",
     "@types/styled-components": "^5.1.7",
     "axios": "^0.21.1",
     "next": "latest",

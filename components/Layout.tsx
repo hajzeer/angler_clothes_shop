@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
+import React, { ReactNode, useState, useEffect } from 'react'
 import Head from 'next/head'
 import styled, {createGlobalStyle} from "styled-components";
+import Header from "./Header";
+import NavBar from "./NavBar";
 
 type Props = {
   children?: ReactNode
-  title?: string
 }
 
 const ContainerLayout = styled.section`
@@ -33,33 +33,43 @@ const GlobalStyle = createGlobalStyle`
 `
 
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+
+
+const Layout = ({ children}: Props) => {
+
+    const [isVisible, setIsVisible] = useState(false)
+
+    const handleClick = () => {
+        if(isVisible === false) {
+            setIsVisible(true)
+        } else {
+            setIsVisible(!isVisible)
+        }
+        console.log(isVisible)
+    }
+
+
+    return (
     <ContainerLayout>
         <GlobalStyle/>
     <Head>
-      <title>{title}</title>
+      <title>Fishing Clothes | Ubrania dla prawdziwych wędkarzy</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
     </Head>
-    <header>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-      </nav>
-    </header>
+        <Header isVisible={handleClick}/>
+        <NavBar isVisible={isVisible}/>
     {children}
     <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
+      <br />
+      <span>Polityka prywatności: <br/>
+            © 2020 Created by hiThere Studio for Fishing Clothes <br/>
+            All rights reserveds
+      </span>
     </footer>
   </ContainerLayout>
-)
+    )}
 
 export default Layout

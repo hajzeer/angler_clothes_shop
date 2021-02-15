@@ -11,11 +11,7 @@ interface IComponentsProps {
     }
 }
 
-
-
-const Products = ({items}: IComponentsProps) => {
-
-    const Container = styled.section`
+const Container = styled.section`
       
       margin: 50px 0 0 0;
       padding: 0;
@@ -39,7 +35,7 @@ const Products = ({items}: IComponentsProps) => {
       }
     `;
 
-    const ImageStyle = styled.img`
+const ImageStyle = styled.img`
     width: 80%;
       height: auto;
       
@@ -47,19 +43,19 @@ const Products = ({items}: IComponentsProps) => {
       
     `;
 
-    const TitleStyle = styled.h2`
+const TitleStyle = styled.h2`
     text-align: center;
     
     `
 
-    const PriceStyle = styled.p`
+const PriceStyle = styled.p`
       text-align: center;
       font-size: 22px;
       font-weight: 900;
         
     `;
 
-    const SpanStyled = styled.span`
+const SpanStyled = styled.span`
       display: flex;
       flex-direction: column;
       transition: transform .4s ease-out;
@@ -70,7 +66,7 @@ const Products = ({items}: IComponentsProps) => {
       }
     `;
 
-    const ButtonStyled = styled.button`
+const ButtonStyled = styled.button`
         position: relative;
       padding: 0;
       margin: 0;
@@ -80,7 +76,7 @@ const Products = ({items}: IComponentsProps) => {
       align-items: center;
       justify-content: center;
       
-      z-index: 999;
+      z-index: 9;
       
       bottom: 2em;
       right: 2em;
@@ -114,7 +110,7 @@ const Products = ({items}: IComponentsProps) => {
       }
     `;
 
-    const ButtonSpanStyled = styled.span`
+const ButtonSpanStyled = styled.span`
       
       text-align: center;
       vertical-align: center;
@@ -127,7 +123,7 @@ const Products = ({items}: IComponentsProps) => {
 
 
 
-
+const Products = React.memo<IComponentsProps>(({items}) => {
 
     return (
         <Container>
@@ -141,6 +137,6 @@ const Products = ({items}: IComponentsProps) => {
             </SpanStyled>
         </Container>
         )
-}
+});
 
 export default Products

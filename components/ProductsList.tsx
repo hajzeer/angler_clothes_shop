@@ -9,7 +9,7 @@ interface ProductsListProps {
     products: Array<IItems>
 }
 
-const ProductsList = ({products}: ProductsListProps) => {
+const ProductsList = React.memo<ProductsListProps>(({products}: ProductsListProps) => {
 
     const Container = styled.section`
       
@@ -36,6 +36,6 @@ const ProductsList = ({products}: ProductsListProps) => {
             }
         </Container>
     )
-}
+});
 
 export default ProductsList;

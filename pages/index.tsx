@@ -27,6 +27,11 @@ const IndexPage = () => {
   
 `;
 
+    const SectionTitle = styled.h2`
+    
+        text-align: center;
+    `
+
     useEffect(() => {
 
         const getProduct = async() => {
@@ -40,10 +45,14 @@ const IndexPage = () => {
         getProduct();
     }, []);
 
+
+
+
     return (
-        <Layout title="Home | Next.js + TypeScript Example">
+        <Layout>
             <Container>
                 <Hero/>
+                <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
                 <ProductsList products={product}/>
             </Container>
         </Layout>
