@@ -48,10 +48,10 @@ const ParagraphStyled = styled.p`
 
 const ImageStyle = styled.img`
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 10px;
+  left: 10px;
   
-  width: 200px;
+  width: 75px;
   height: 75px;
   background: #fff;
   z-index: 3;

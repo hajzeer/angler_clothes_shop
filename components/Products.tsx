@@ -94,6 +94,7 @@ const ButtonStyled = styled.button`
       
       cursor: pointer;
       outline: none;
+  color: #2e2e2e;
       
       transition: transform .5s ease-out;
       
@@ -104,7 +105,7 @@ const ButtonStyled = styled.button`
       }
 
       &:active {
-        color: white;
+        color: #ffffff;
         box-shadow:  5px 5px 10px #969696,
           -5px -5px 10px #cacaca;
       }

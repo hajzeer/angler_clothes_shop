@@ -3,6 +3,8 @@ import Head from 'next/head'
 import styled, {createGlobalStyle} from "styled-components";
 import Header from "./Header";
 import NavBar from "./NavBar";
+import Cart from "./Cart";
+import Footer from "./Footer";
 
 type Props = {
   children?: ReactNode
@@ -35,18 +37,31 @@ const GlobalStyle = createGlobalStyle`
 
 
 
-const Layout = ({ children}: Props) => {
+const Layout = React.memo<Props>(({ children}) => {
 
     const [isVisible, setIsVisible] = useState(false)
+    const [visibility, setVisibility] = useState(false)
 
-    const handleClick = () => {
-        if(isVisible === false) {
-            setIsVisible(true)
+    const handleMenu = () => {
+        if(!isVisible) {
+            setIsVisible(true);
+            setVisibility(false);
+
         } else {
-            setIsVisible(!isVisible)
-        }
-        console.log(isVisible)
-    }
+            setIsVisible(!isVisible);
+            setVisibility(false);
+        };
+    };
+
+    const handleCart = () => {
+        if(!visibility) {
+            setVisibility(true);
+            setIsVisible(false);
+        } else {
+            setVisibility(!visibility);
+            setIsVisible(false);
+        };
+    };
 
 
     return (
@@ -59,17 +74,12 @@ const Layout = ({ children}: Props) => {
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
     </Head>
-        <Header isVisible={handleClick}/>
-        <NavBar isVisible={isVisible}/>
+        <Header isVisible={handleMenu} visibility={handleCart}/>
+        <NavBar isVisible={isVisible} visibility={handleMenu}/>
+        <Cart visibility={visibility} vis={handleCart}/>
     {children}
-    <footer>
-      <br />
-      <span>Polityka prywatności: <br/>
-            © 2020 Created by hiThere Studio for Fishing Clothes <br/>
-            All rights reserveds
-      </span>
-    </footer>
+    <Footer/>
   </ContainerLayout>
-    )}
+    )});
 
-export default Layout
+export default Layout;

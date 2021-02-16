@@ -3,13 +3,12 @@ import axios from "axios";
 import styled from "styled-components";
 
 import Layout from '../components/Layout'
-import ProductsList from "../components/ProductsList";
 import {IItems} from "../interfaces";
-import Hero from "../components/Hero";
+import CategoriesList from "../components/CategoriesList";
 
-const IndexPage = () => {
+const CategoriesPage = () => {
 
-    const [product, setProduct] = useState<IItems | any>(Array)
+    const [category, setCategory] = useState<IItems | any>(Array)
 
     const url = `http://localhost:1337`;
 
@@ -34,15 +33,16 @@ const IndexPage = () => {
 
     useEffect(() => {
 
-        const getProduct = async() => {
-            const res = await axios.get(url +`/products`);
+        const getCategory = async() => {
+            const res = await axios.get(url +`/categories`);
             const data = res.data;
 
             console.log(data)
-            return setProduct(data);
+
+            return setCategory(data);
         };
 
-        getProduct();
+        getCategory();
     }, []);
 
 
@@ -51,15 +51,13 @@ const IndexPage = () => {
     return (
         <Layout>
             <Container>
-                <Hero/>
                 <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
-                <ProductsList products={product}/>
+                <CategoriesList categories={category}/>
             </Container>
         </Layout>
 
     )
-    }
+}
 
 
-
-export default IndexPage
+export default CategoriesPage

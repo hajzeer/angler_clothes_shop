@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import Layout from '../components/Layout'
 
-const AboutPage = () => (
-  <Layout title="About">
-
+const RulesPage = () => (
+  <Layout title="Products">
     <p>
       <Link href="/">
         <a>Go home</a>
@@ -12,4 +11,4 @@ const AboutPage = () => (
   </Layout>
 )
 
-export default AboutPage
+export default RulesPage

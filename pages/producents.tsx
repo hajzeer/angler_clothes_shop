@@ -3,13 +3,12 @@ import axios from "axios";
 import styled from "styled-components";
 
 import Layout from '../components/Layout'
-import ProductsList from "../components/ProductsList";
 import {IItems} from "../interfaces";
-import Hero from "../components/Hero";
+import ProducersList from '../components/ProducersList'
 
-const IndexPage = () => {
+const ProducentsPage = () => {
 
-    const [product, setProduct] = useState<IItems | any>(Array)
+    const [producer, setProducer] = useState<IItems | any>(Array)
 
     const url = `http://localhost:1337`;
 
@@ -34,15 +33,15 @@ const IndexPage = () => {
 
     useEffect(() => {
 
-        const getProduct = async() => {
-            const res = await axios.get(url +`/products`);
+        const getProducer = async() => {
+            const res = await axios.get(url +`/producers`);
             const data = res.data;
 
             console.log(data)
-            return setProduct(data);
+            return setProducer(data);
         };
 
-        getProduct();
+        getProducer();
     }, []);
 
 
@@ -51,15 +50,13 @@ const IndexPage = () => {
     return (
         <Layout>
             <Container>
-                <Hero/>
                 <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
-                <ProductsList products={product}/>
+                <ProducersList producers={producer}/>
             </Container>
         </Layout>
 
     )
-    }
+}
 
 
-
-export default IndexPage
+export default ProducentsPage

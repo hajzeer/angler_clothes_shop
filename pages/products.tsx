@@ -5,9 +5,8 @@ import styled from "styled-components";
 import Layout from '../components/Layout'
 import ProductsList from "../components/ProductsList";
 import {IItems} from "../interfaces";
-import Hero from "../components/Hero";
 
-const IndexPage = () => {
+const ProductsPage = () => {
 
     const [product, setProduct] = useState<IItems | any>(Array)
 
@@ -51,15 +50,14 @@ const IndexPage = () => {
     return (
         <Layout>
             <Container>
-                <Hero/>
                 <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
                 <ProductsList products={product}/>
             </Container>
         </Layout>
 
     )
-    }
+}
 
 
 
-export default IndexPage
+export default ProductsPage

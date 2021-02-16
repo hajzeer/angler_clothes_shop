@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 
-
-const Container = styled.section`
+const Container = styled.header`
   
   position: fixed;
    bottom: 0;
@@ -16,7 +15,6 @@ const Container = styled.section`
 
   background: rgba(224, 224, 224, .5);
   border: none;
-  box-shadow: -20px -20px 100px #e0e0e0;
   backdrop-filter: blur(5px);
   
   z-index: 999999;
@@ -55,11 +53,13 @@ const HamburgerSpan1 = styled.span`
   padding: 0;
   top: 45%;
   
-  width: 40px;
+  width: 35px;
   height: 3px;
   background: #3b3b3b;
   border-radius: 25px;
-
+  
+  
+  
   
 `;
 
@@ -69,12 +69,11 @@ const HamburgerSpan2 = styled.span`
   padding: 0;
   top: 60%;
   
-  width: 40px;
+  width: 35px;
   height: 3px;
   background: #3b3b3b;
   border-radius: 25px;
   
-
   
 `;
 
@@ -116,15 +115,16 @@ const CartLength = styled.div`
 
 interface IProps {
     readonly isVisible: void,
+    readonly visibility: void
 }
 
-const Header = React.memo<IProps>(({isVisible}) => {
+const Header = React.memo<IProps>(({isVisible, visibility}) => {
 
 
 
     return (
         <Container>
-            <ButtonStyled>
+            <ButtonStyled onClick={visibility}>
                 <Image
                     src='/cart.svg'
                     layout='fixed'
@@ -137,7 +137,7 @@ const Header = React.memo<IProps>(({isVisible}) => {
                 </CartLength>
             </ButtonStyled>
             <ButtonStyled onClick={isVisible}>
-                <HamburgerSpan1/>
+                <HamburgerSpan1 current={isVisible}/>
                 <HamburgerSpan2/>
             </ButtonStyled>
         </Container>
