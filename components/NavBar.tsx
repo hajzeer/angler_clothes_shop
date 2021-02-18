@@ -9,16 +9,13 @@ interface IComponentProps {
 }
 interface IStyledProps {
     readonly  current: any,
-    readonly display: any,
 }
 
 const Container = withProps<IStyledProps>()(styled.section)`
     position: fixed;
         width: 100%;
     height: 100vh;
-    
-    display: transform: ${({display}: IStyledProps) => display ? `block` : `none`};
-  top: 0;
+    top: 0;
   left: 0;
   margin: 0;
   padding: 0;
@@ -47,10 +44,7 @@ const LinkStyled = styled(Link)`
   
     
       align-self: flex-start;
-      color: #ffffff;
   z-index: 999;
-  cursor: pointer;
-
     
 
 
@@ -62,6 +56,8 @@ const Anchor = styled.a`
   color: #ffffff;
   font-size: 25px;
   cursor: pointer;
+
+
 
 `;
 
@@ -85,7 +81,7 @@ const NavBar = React.memo<IComponentProps>(({isVisible,visibility}) => {
                 <LinkStyled href='/categories'>
                     <Anchor onClick={visibility}>KATEGORIE</Anchor>
                 </LinkStyled>
-                <LinkStyled href='/producents'>
+                <LinkStyled href='/producers'>
                     <Anchor onClick={visibility}>PRODUCENCI</Anchor>
                 </LinkStyled>
                 <LinkStyled href='/about'>

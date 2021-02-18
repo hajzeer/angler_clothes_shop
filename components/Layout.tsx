@@ -1,10 +1,11 @@
-import React, { ReactNode, useState } from 'react'
+import React, {ReactNode, useContext, useState} from 'react'
 import Head from 'next/head'
 import styled, {createGlobalStyle} from "styled-components";
 import Header from "./Header";
 import NavBar from "./NavBar";
 import Cart from "./Cart";
 import Footer from "./Footer";
+import {CategoryContext, CategoryProvider} from "../context/categoryContext";
 
 type Props = {
   children?: ReactNode
@@ -41,6 +42,7 @@ const Layout = React.memo<Props>(({ children}) => {
 
     const [isVisible, setIsVisible] = useState(false)
     const [visibility, setVisibility] = useState(false)
+    const {isCategoryId, setIsCategoryId} = useContext(CategoryContext)
 
     const handleMenu = () => {
         if(!isVisible) {
@@ -65,21 +67,23 @@ const Layout = React.memo<Props>(({ children}) => {
 
 
     return (
-    <ContainerLayout>
-        <GlobalStyle/>
-    <Head>
-      <title>Fishing Clothes | Ubrania dla prawdziwych wędkarzy</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="preconnect" href="https://fonts.gstatic.com"/>
-        <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
-    </Head>
-        <Header isVisible={handleMenu} visibility={handleCart}/>
-        <NavBar isVisible={isVisible} visibility={handleMenu}/>
-        <Cart visibility={visibility} vis={handleCart}/>
-    {children}
-    <Footer/>
-  </ContainerLayout>
+        <CategoryProvider value={{isCategoryId, setIsCategoryId}}>
+            <ContainerLayout>
+                <GlobalStyle/>
+                <Head>
+                  <title>Fishing Clothes | Ubrania dla prawdziwych wędkarzy</title>
+                  <meta charSet="utf-8" />
+                  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+                    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+                </Head>
+                    <Header isVisible={handleMenu} visibility={handleCart}/>
+                    <NavBar isVisible={isVisible} visibility={handleMenu}/>
+                    <Cart visibility={visibility} vis={handleCart}/>
+                    {children}
+                    <Footer/>
+            </ContainerLayout>
+        </CategoryProvider>
     )});
 
 export default Layout;

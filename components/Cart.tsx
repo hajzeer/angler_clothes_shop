@@ -8,7 +8,6 @@ interface IComponentProps {
 }
 interface IStyledProps {
     readonly  current: any,
-    readonly display: any,
 }
 
 const Container = withProps<IStyledProps>()(styled.section)`
@@ -16,7 +15,6 @@ const Container = withProps<IStyledProps>()(styled.section)`
         width: 100%;
     height: 100vh;
     
-    display: transform: ${({display}: IStyledProps) => display ? `block` : `none`};
   top: 0;
   left: 0;
   margin: 0;

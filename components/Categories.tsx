@@ -1,13 +1,34 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
+import {CategoryContext, CategoryProvider} from "../context/categoryContext";
+
 
 interface IComponentsProps {
     readonly items: {
         id: number,
         Name: string,
         Image: string,
-    }
+    },
+
+
 }
+
+
+const Anchor = styled.a`
+  
+    width: 100%;
+    text-decoration: none;
+    color: #000000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  
+    
+`;
 
 const Container = styled.section`
       
@@ -21,9 +42,10 @@ const Container = styled.section`
       box-shadow:  20px 20px 60px #bebebe,
         -20px -20px 60px #ffffff;
       
+  
       display: flex;
       flex-direction: column;
-      align-self: center;
+      align-items: center;
       justify-content: center;
       
       
@@ -41,6 +63,8 @@ const Container = styled.section`
 
 const TitleStyle = styled.h2`
     text-align: center;
+    color: #000000;
+    text-decoration: none;
     
     `
 
@@ -49,6 +73,7 @@ const SpanStyled = styled.span`
       display: flex;
       flex-direction: column;
       transition: transform .4s ease-out;
+  
       &:hover {
         transform: scale(.98);
         
@@ -57,17 +82,35 @@ const SpanStyled = styled.span`
     `;
 
 
-
 const Categories = React.memo<IComponentsProps>(({items}) => {
 
+
+    const {isCategoryId, setIsCategoryId} = useContext(CategoryContext)
+
+    const handleClick = () => {
+        const id: number = items.id;
+
+        setIsCategoryId(id)
+
+
+    }
+
+
+
     return (
-        <Container>
-            <SpanStyled>
-                <ImageStyle src={`http://localhost:1337` + items.Image.url}/>
-            <TitleStyle>{items.Name}</TitleStyle>
-            </SpanStyled>
-        </Container>
-        )
+        <CategoryProvider>
+            <Link href={`/categories/${items.Name}`}>
+                <Anchor onClick={handleClick}>
+                    <Container>
+                        <SpanStyled>
+                            <ImageStyle src={`http://localhost:1337` + items.Image.url}/>
+                            <TitleStyle>{items.Name}</TitleStyle>
+                        </SpanStyled>
+                    </Container>
+                </Anchor>
+            </Link>
+        </CategoryProvider>
+    )
 });
 
 export default Categories

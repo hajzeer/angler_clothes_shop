@@ -11,8 +11,19 @@ export interface IItems {
     readonly Price: number,
     readonly state: number,
     readonly description: string,
-    readonly Images?: string,
+    readonly Images: string,
     readonly category: string
 
 }
 
+export interface IItemsOfCategory {
+    readonly id: number,
+    readonly Name: string,
+    readonly Image: string,
+}
+
+export interface IItemsOfProducers {
+    readonly id: number,
+    readonly Name: string,
+    readonly Logo: string,
+}

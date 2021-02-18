@@ -2,14 +2,15 @@ import React, {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-import Layout from '../components/Layout'
-import {IItems} from "../interfaces";
-import CategoriesList from "../components/CategoriesList";
-import {CategoryProvider} from "../context/categoryContext";
+import Layout from '../../components/Layout'
+import ProductsList from "../../components/ProductsList";
+import {IItems} from "../../interfaces";
+import {CategoryContext, CategoryProvider} from "../../context/categoryContext";
 
-const CategoriesPage = () => {
+const ProductPage = () => {
 
-    const [category, setCategory] = useState<IItems | any>(Array)
+    const [product, setProduct] = useState<IItems | any>(Array)
+    const {isCategoryId, setIsCategoryId} = useContext(CategoryContext);
 
     const url = `http://localhost:1337`;
 
@@ -31,19 +32,19 @@ const CategoriesPage = () => {
     
         text-align: center;
     `
+
     useEffect(() => {
 
-        const getCategory = async() => {
+        const getProduct = async() => {
             const res = await axios.get(url +`/categories`);
             const data = res.data;
 
             console.log(data)
-
-            return setCategory(data);
-
-
+            console.log(isCategoryId)
+            return setProduct(data[isCategoryId].products);
         };
-        getCategory();
+
+        getProduct();
     }, []);
 
 
@@ -54,7 +55,7 @@ const CategoriesPage = () => {
         <Layout>
             <Container>
                 <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
-                <CategoriesList categories={category}/>
+                <ProductsList products={product}/>
             </Container>
         </Layout>
         </CategoryProvider>
@@ -63,4 +64,5 @@ const CategoriesPage = () => {
 }
 
 
-export default CategoriesPage
+
+export default ProductPage

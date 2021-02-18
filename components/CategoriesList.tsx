@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {IItems} from "../interfaces";
+import {IItemsOfCategory} from "../interfaces";
 import Categories from "./Categories";
 
 
 interface ProductsListProps {
-    categories: Array<IItems>
+    categories: Array<IItemsOfCategory>
 }
 
 const CategoriesList = React.memo<ProductsListProps>(({categories}: ProductsListProps) => {

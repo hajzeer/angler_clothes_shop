@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {IItems} from "../interfaces";
+import {IItemsOfProducers} from "../interfaces";
 import Producers from "./Producers";
 
 
 interface ProductsListProps {
-    producers: Array<IItems>
+    producers: Array<IItemsOfProducers>
 }
 
 const ProductsList = React.memo<ProductsListProps>(({producers}: ProductsListProps) => {
