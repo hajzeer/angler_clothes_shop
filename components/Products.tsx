@@ -8,7 +8,9 @@ interface IComponentsProps {
         Name: string,
         producer: string,
         Price: number,
-        Images: string,
+        Images: [
+            url: string | any
+        ],
     }
 }
 
