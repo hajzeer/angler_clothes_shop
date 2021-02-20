@@ -1,17 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import {withProps} from '../withProps';
 
 interface IComponentProps {
     readonly isVisible: boolean,
     readonly visibility: void
 }
 interface IStyledProps {
-    readonly  current: any,
+    readonly  current?: boolean,
 }
 
-const Container = withProps<IStyledProps>()(styled.section)`
+const Container = styled.section<IStyledProps>`
     position: fixed;
         width: 100%;
     height: 100vh;
@@ -22,7 +21,7 @@ const Container = withProps<IStyledProps>()(styled.section)`
     background: #2e2e2e;
     z-index: 99;
     color: #fff;
-    transform: ${({current}: IStyledProps) => current ? `translateX(0)` : `translateX(100%)`};
+    transform: ${props => props.current ? `translateX(0)` : `translateX(100%)`};
 
    transition: all 0.3s ease-in-out;
 `;
@@ -70,7 +69,7 @@ const NavBar = React.memo<IComponentProps>(({isVisible,visibility}) => {
 
 
     return (
-        <Container current={isVisible} display={isVisible}>
+        <Container current={isVisible}>
             <InnerDivStyled>
                 <LinkStyled href='/'>
                     <Anchor onClick={visibility}>STRONA GŁÓWNA</Anchor>

@@ -26,13 +26,17 @@ export interface ILoading {
 export interface IItemsOfCategory {
     readonly id: number,
     readonly Name: string,
-    readonly Image: string,
+    Image: {
+        url: string
+    },
 }
 
 export interface IItemsOfProducers {
     readonly id: number,
     readonly Name: string,
-    readonly Logo: string,
+    readonly Logo: {
+        url: string
+    },
 }
 
 export interface ICategoryData {

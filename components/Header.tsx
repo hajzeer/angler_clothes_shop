@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import {withProps} from "../withProps";
-import {IStyledProps} from "../interfaces";
 
 const Container = styled.header`
   
@@ -49,7 +47,7 @@ const ButtonStyled = styled.button`
 
 `;
 
-const HamburgerSpan1 = withProps<IStyledProps>()(styled.span)`
+const HamburgerSpan1 = styled.span`
   position: absolute;
   margin: 0;
   padding: 0;

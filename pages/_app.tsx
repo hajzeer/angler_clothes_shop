@@ -2,6 +2,7 @@ import App from "next/app";
 import type { AppProps, AppContext } from 'next/app'
 import {CategoryProvider} from "../context/categoryContext";
 import {ProducerProvider} from "../context/ProducerContext";
+import React from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (

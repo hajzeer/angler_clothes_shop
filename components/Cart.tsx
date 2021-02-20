@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import {withProps} from '../withProps';
-import {IStyledProps} from "../interfaces";
 
 interface IComponentProps {
     readonly visibility: boolean,
-    readonly vis: void
+    readonly vis: void,
+}
+interface IStyledProps {
+    readonly  current?: boolean,
 }
 
-
-const Container = withProps<IStyledProps>()(styled.section)`
+const Container = styled.section<IStyledProps>`
     position: fixed;
         width: 100%;
     height: 100vh;
@@ -20,7 +20,7 @@ const Container = withProps<IStyledProps>()(styled.section)`
     background: #2e2e2e;
     z-index: 999;
     color: #fff;
-    transform: ${({current}: IStyledProps) => current ? `translateX(0)` : `translateX(-100%)`};
+    transform: ${props => props.current ? `translateX(0)` : `translateX(-100%)`};
 
    transition: all 0.3s ease-in-out;
 `;
@@ -44,7 +44,7 @@ const Cart = React.memo<IComponentProps>(({visibility}) => {
 
 
     return (
-        <Container current={visibility} display={visibility}>
+        <Container current={visibility}>
             <InnerDivStyled>
                 Cart
 
