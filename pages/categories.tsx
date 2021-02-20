@@ -38,8 +38,6 @@ const CategoriesPage = () => {
         const res = await axios.get(url +`/categories`);
         const data = res.data;
 
-        console.log(data)
-
         return setCategory(data), setIsLoading(!isLoading);
 
 
