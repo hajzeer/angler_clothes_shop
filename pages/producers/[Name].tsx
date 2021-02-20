@@ -5,12 +5,12 @@ import styled from "styled-components";
 import Layout from '../../components/Layout'
 import ProductsList from "../../components/ProductsList";
 import {IItems} from "../../interfaces";
-import {CategoryContext, CategoryProvider} from "../../context/categoryContext";
+import {ProducerContext} from "../../context/ProducerContext";
 
 const ProductPage = () => {
 
     const [product, setProduct] = useState<IItems | any>(Array)
-    const {isCategoryId, setIsCategoryId} = useContext(CategoryContext);
+    const {isProducerId, setIsProducerId} = useContext(ProducerContext)
 
     const url = `http://localhost:1337`;
 
@@ -35,12 +35,12 @@ const ProductPage = () => {
 
     useEffect(() => {
         const getProduct = async() => {
-            const res = await axios.get(url +`/categories`);
+            const res = await axios.get(url +`/producers`);
             const data = res.data;
 
             console.log(data)
-            console.log(isCategoryId)
-            return setProduct(data[isCategoryId].products);
+            console.log(isProducerId)
+            return setProduct(data[isProducerId].products);
         };
         getProduct();
     }, []);

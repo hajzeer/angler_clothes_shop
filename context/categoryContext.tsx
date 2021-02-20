@@ -1,22 +1,14 @@
-import React, {ReactNode, createContext, useState} from "react";
+import React, {createContext, useState} from "react";
+import {ICategoryData, IProps} from "../interfaces";
 
 
-
-export interface ICategoryData {
-    readonly isCategoryId: number | null,
-    readonly setIsCategoryId: (isCategoryId: number ) => void
-}
-
-interface IProps {
-        readonly children?: ReactNode,
-}
 
 const defaultValue: number = 0
 
-export const CategoryContext = createContext<ICategoryData | any>(defaultValue);
+ const CategoryContext = createContext<ICategoryData | any>(defaultValue);
 
 
-export const CategoryProvider = ({children}: IProps) => {
+ const CategoryProvider = React.memo<IProps>(({children}) => {
     const [isCategoryId, setIsCategoryId] = useState<ICategoryData | any>(defaultValue)
 
     return (
@@ -24,4 +16,6 @@ export const CategoryProvider = ({children}: IProps) => {
             { children }
         </CategoryContext.Provider>
     )
-}
+})
+
+export {CategoryProvider, CategoryContext}

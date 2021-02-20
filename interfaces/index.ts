@@ -4,6 +4,8 @@
 //
 
 
+import {ReactNode} from "react";
+
 export interface IItems {
     readonly id: number,
     readonly Name: string,
@@ -26,4 +28,18 @@ export interface IItemsOfProducers {
     readonly id: number,
     readonly Name: string,
     readonly Logo: string,
+}
+
+export interface ICategoryData {
+    readonly isCategoryId: number | null,
+    readonly setIsCategoryId:  void
+}
+
+export interface IProducerData {
+    readonly isProducerId: number | null,
+    readonly setIsProducerId:  void
+}
+
+export interface IProps {
+    readonly children?: ReactNode,
 }

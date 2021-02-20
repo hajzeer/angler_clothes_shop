@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
+import Link from "next/link";
+import {ProducerContext} from "../context/ProducerContext";
 
 interface IComponentsProps {
     readonly items: {
@@ -58,17 +60,43 @@ const SpanStyled = styled.span`
       }
     `;
 
+const Anchor = styled.a`
+  
+    width: 100%;
+    text-decoration: none;
+    color: #000000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  
+    
+`;
+
 
 
 const Producers = React.memo<IComponentsProps>(({items}) => {
 
+    const {isProducerId, setIsProducerId} = useContext(ProducerContext)
+
+    const handleClick = () => {
+        const id: number = items.id - 1;
+        setIsProducerId(id)
+    }
+
     return (
-        <Container>
-            <SpanStyled>
-            <TitleStyle>{items.Name}</TitleStyle>
-            <ImageStyle src={`http://localhost:1337` + items.Logo.url}/>
-            </SpanStyled>
-        </Container>
+        <Link href={`/producers/${items.Name}`}>
+            <Anchor  onClick={handleClick}>
+                <Container>
+                    <SpanStyled>
+                    <TitleStyle>{items.Name}</TitleStyle>
+                    <ImageStyle src={`http://localhost:1337` + items.Logo.url}/>
+                    </SpanStyled>
+                </Container>
+            </Anchor>
+        </Link>
         )
 });
 

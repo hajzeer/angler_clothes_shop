@@ -1,4 +1,4 @@
-import React, {ReactNode, useContext, useState} from 'react'
+import React, {ReactNode, useContext, useEffect, useState} from 'react'
 import Head from 'next/head'
 import styled, {createGlobalStyle} from "styled-components";
 import Header from "./Header";
@@ -42,7 +42,6 @@ const Layout = React.memo<Props>(({ children}) => {
 
     const [isVisible, setIsVisible] = useState(false)
     const [visibility, setVisibility] = useState(false)
-    const {isCategoryId, setIsCategoryId} = useContext(CategoryContext)
 
     const handleMenu = () => {
         if(!isVisible) {
@@ -66,8 +65,8 @@ const Layout = React.memo<Props>(({ children}) => {
     };
 
 
+
     return (
-        <CategoryProvider value={{isCategoryId, setIsCategoryId}}>
             <ContainerLayout>
                 <GlobalStyle/>
                 <Head>
@@ -83,7 +82,6 @@ const Layout = React.memo<Props>(({ children}) => {
                     {children}
                     <Footer/>
             </ContainerLayout>
-        </CategoryProvider>
     )});
 
 export default Layout;

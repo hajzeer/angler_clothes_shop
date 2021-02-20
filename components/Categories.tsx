@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import {CategoryContext, CategoryProvider} from "../context/categoryContext";
+import {CategoryContext} from "../context/categoryContext";
 
 
 interface IComponentsProps {
@@ -88,17 +88,11 @@ const Categories = React.memo<IComponentsProps>(({items}) => {
     const {isCategoryId, setIsCategoryId} = useContext(CategoryContext)
 
     const handleClick = () => {
-        const id: number = items.id;
-
+        const id: number = items.id - 1;
         setIsCategoryId(id)
-
-
     }
 
-
-
     return (
-        <CategoryProvider>
             <Link href={`/categories/${items.Name}`}>
                 <Anchor onClick={handleClick}>
                     <Container>
@@ -109,7 +103,6 @@ const Categories = React.memo<IComponentsProps>(({items}) => {
                     </Container>
                 </Anchor>
             </Link>
-        </CategoryProvider>
     )
 });
 

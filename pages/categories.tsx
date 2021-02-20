@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -10,7 +10,6 @@ import {CategoryProvider} from "../context/categoryContext";
 const CategoriesPage = () => {
 
     const [category, setCategory] = useState<IItems | any>(Array)
-
     const url = `http://localhost:1337`;
 
     const Container = styled.section`
@@ -50,14 +49,12 @@ const CategoriesPage = () => {
 
 
     return (
-        <CategoryProvider>
-        <Layout>
-            <Container>
-                <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
-                <CategoriesList categories={category}/>
-            </Container>
-        </Layout>
-        </CategoryProvider>
+            <Layout>
+                <Container>
+                    <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
+                    <CategoriesList categories={category}/>
+                </Container>
+            </Layout>
 
     )
 }
