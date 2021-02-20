@@ -33,8 +33,7 @@ const ProductsPage = () => {
 
     const [product, setProduct] = useState<IItems | any>(Array)
     const [isLoading, setIsLoading] = useState<ILoading | any>(true)
-
-    const url = `http://localhost:1337`;
+    const url = `https://angler-clothes-shop.herokuapp.com`
 
     useEffect(() => {
 

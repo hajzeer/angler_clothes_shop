@@ -125,12 +125,12 @@ const ButtonSpanStyled = styled.span`
 
 
 const Products = React.memo<IComponentsProps>(({items}) => {
-
+    const url = `https://angler-clothes-shop.herokuapp.com`
     return (
         <Container>
             <SpanStyled>
             <TitleStyle>{items.Name}</TitleStyle>
-            <ImageStyle src={`http://localhost:1337` + items.Images[0].url}/>
+            <ImageStyle src={url + items.Images[0].url}/>
             <PriceStyle>{items.Price} PLN</PriceStyle>
                 <ButtonStyled>
                 <ButtonSpanStyled>+</ButtonSpanStyled>

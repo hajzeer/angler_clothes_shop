@@ -35,8 +35,7 @@ const ProductPage = () => {
 
     const {isCategoryId} = useContext(CategoryContext);
 
-    const url = `http://localhost:1337`;
-
+    const url = `https://angler-clothes-shop.herokuapp.com`
 
     const getProduct = async() => {
         const res = await axios.get(url +`/categories`);

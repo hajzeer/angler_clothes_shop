@@ -32,9 +32,7 @@ const CategoriesPage = () => {
     const [category, setCategory] = useState<IItems | any>(Array)
     const [isLoading, setIsLoading] = useState<ILoading | any>(true)
 
-    const url = `http://localhost:1337`;
-
-
+    const url = `https://angler-clothes-shop.herokuapp.com`
 
     const getCategory = async() => {
         const res = await axios.get(url +`/categories`);

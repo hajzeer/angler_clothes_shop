@@ -78,7 +78,7 @@ const Anchor = styled.a`
 const Producers = React.memo<IComponentsProps>(({items}) => {
 
     const {setIsProducerId} = useContext(ProducerContext)
-
+    const url = `https://angler-clothes-shop.herokuapp.com`
     const handleClick = () => {
         const id: number = items.id - 1;
         setIsProducerId(id)
@@ -91,7 +91,7 @@ const Producers = React.memo<IComponentsProps>(({items}) => {
 
                     <SpanStyled>
                     <TitleStyle>{items.Name}</TitleStyle>
-                    <ImageStyle src={`http://localhost:1337` + items.Logo.url}/>
+                    <ImageStyle src={url + items.Logo.url}/>
                     </SpanStyled>
             </Anchor>
         </Link>

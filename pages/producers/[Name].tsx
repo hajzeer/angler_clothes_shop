@@ -35,11 +35,10 @@ const ProductPage = () => {
 
     const {isProducerId} = useContext(ProducerContext)
 
-    const url = `http://localhost:1337`;
 
-
+    const url = `https://angler-clothes-shop.herokuapp.com`
     const getProduct = async() => {
-        const res = await axios.get(url +`/producers`);
+        const res = await axios.get(url+`/producers`);
         const data = res.data;
 
         return setProduct(data[isProducerId].products), setIsLoading(!isLoading);
