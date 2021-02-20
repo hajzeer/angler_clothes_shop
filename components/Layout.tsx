@@ -1,4 +1,4 @@
-import React, {ReactNode, useContext, useEffect, useState} from 'react'
+import React, {ReactNode, useState} from 'react'
 import Head from 'next/head'
 import styled, {createGlobalStyle} from "styled-components";
 import Header from "./Header";
@@ -7,7 +7,7 @@ import Cart from "./Cart";
 import Footer from "./Footer";
 
 interface Props {
-  children?: ReactNode
+  children?: ReactNode,
 }
 
 const ContainerLayout = styled.section`
@@ -50,7 +50,7 @@ const Layout = React.memo<Props>(({ children}) => {
         } else {
             setIsVisible(!isVisible);
             setVisibility(false);
-        };
+        }
     };
 
     const handleCart = () => {
@@ -60,7 +60,7 @@ const Layout = React.memo<Props>(({ children}) => {
         } else {
             setVisibility(!visibility);
             setIsVisible(false);
-        };
+        }
     };
 
 
@@ -74,7 +74,7 @@ const Layout = React.memo<Props>(({ children}) => {
                   <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                     <link rel="preconnect" href="https://fonts.gstatic.com"/>
                     <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
-                    <link href='https://css.gg/spinner-alt.css' rel='stylesheet'/>
+                    <link href={'https://css.gg/spinner-alt.css'} rel='stylesheet'/>
                 </Head>
                     <Header isVisible={handleMenu} visibility={handleCart}/>
                     <NavBar isVisible={isVisible} visibility={handleMenu}/>

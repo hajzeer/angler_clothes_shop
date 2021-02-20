@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 interface IComponentProps {
     readonly isVisible: boolean,
-    readonly visibility: void
+    readonly visibility: void | any
 }
 interface IStyledProps {
     readonly  current?: boolean,

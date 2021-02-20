@@ -111,8 +111,8 @@ const CartLength = styled.div`
 `
 
 interface IProps {
-    readonly isVisible: void,
-    readonly visibility: void
+    readonly isVisible: () => void,
+    readonly visibility: () => void
 }
 
 const Header = React.memo<IProps>(({isVisible, visibility}) => {
@@ -134,7 +134,7 @@ const Header = React.memo<IProps>(({isVisible, visibility}) => {
                 </CartLength>
             </ButtonStyled>
             <ButtonStyled onClick={isVisible}>
-                <HamburgerSpan1 current={isVisible}/>
+                <HamburgerSpan1/>
                 <HamburgerSpan2/>
             </ButtonStyled>
         </Container>

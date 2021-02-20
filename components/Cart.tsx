@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 interface IComponentProps {
     readonly visibility: boolean,
-    readonly vis: void,
+    readonly vis: () => void,
 }
 interface IStyledProps {
     readonly  current?: boolean,
