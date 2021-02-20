@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import {withProps} from '../withProps';
+import {IStyledProps} from "../interfaces";
 
 interface IComponentProps {
     readonly visibility: boolean,
     readonly vis: void
 }
-interface IStyledProps {
-    readonly  current: any,
-}
+
 
 const Container = withProps<IStyledProps>()(styled.section)`
     position: fixed;

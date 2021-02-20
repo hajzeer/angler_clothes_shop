@@ -46,16 +46,6 @@ const ParagraphStyled = styled.p`
   font-weight: 900;
 `;
 
-const ImageStyle = styled.img`
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  
-  width: 75px;
-  height: 75px;
-  background: #fff;
-  z-index: 3;
-    `;
 
 const FocusSpanStyled = styled.span`
   
@@ -78,7 +68,6 @@ const Hero = () => {
                 objectFit='cover'
                 quality={75}
             />
-            <ImageStyle src='logo.jpg' alt='logo'/>
             <TitleStyled>
                 Urban Fishing Original
             </TitleStyled>

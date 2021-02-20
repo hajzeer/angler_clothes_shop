@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
+import {withProps} from "../withProps";
+import {IStyledProps} from "../interfaces";
 
 const Container = styled.header`
   
@@ -44,10 +46,10 @@ const ButtonStyled = styled.button`
   align-items: center;
   justify-content: center;
   z-index: 999999;
-    
+
 `;
 
-const HamburgerSpan1 = styled.span`
+const HamburgerSpan1 = withProps<IStyledProps>()(styled.span)`
   position: absolute;
   margin: 0;
   padding: 0;
@@ -57,9 +59,6 @@ const HamburgerSpan1 = styled.span`
   height: 3px;
   background: #3b3b3b;
   border-radius: 25px;
-  
-  
-  
   
 `;
 

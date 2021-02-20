@@ -18,6 +18,11 @@ export interface IItems {
 
 }
 
+export interface ILoading {
+    readonly isLoading: boolean,
+    readonly setIsLoading: void
+}
+
 export interface IItemsOfCategory {
     readonly id: number,
     readonly Name: string,
@@ -42,4 +47,8 @@ export interface IProducerData {
 
 export interface IProps {
     readonly children?: ReactNode,
+}
+
+export interface IStyledProps {
+    readonly  current: any,
 }

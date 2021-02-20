@@ -3,16 +3,12 @@ import axios from "axios";
 import styled from "styled-components";
 
 import Layout from '../components/Layout'
-import {IItems} from "../interfaces";
+import {IItems, ILoading} from "../interfaces";
 import CategoriesList from "../components/CategoriesList";
-import {CategoryProvider} from "../context/categoryContext";
+import LoadingScreen from "../components/LoadingScreen";
 
-const CategoriesPage = () => {
 
-    const [category, setCategory] = useState<IItems | any>(Array)
-    const url = `http://localhost:1337`;
-
-    const Container = styled.section`
+const Container = styled.section`
   background-color: #e0e0e0;
 
   box-sizing: border-box;
@@ -26,22 +22,33 @@ const CategoriesPage = () => {
   
 `;
 
-    const SectionTitle = styled.h2`
+const SectionTitle = styled.h2`
     
         text-align: center;
     `
+
+const CategoriesPage = () => {
+
+    const [category, setCategory] = useState<IItems | any>(Array)
+    const [isLoading, setIsLoading] = useState<ILoading | any>(true)
+
+    const url = `http://localhost:1337`;
+
+
+
+    const getCategory = async() => {
+        const res = await axios.get(url +`/categories`);
+        const data = res.data;
+
+        console.log(data)
+
+        return setCategory(data), setIsLoading(!isLoading);
+
+
+    };
     useEffect(() => {
 
-        const getCategory = async() => {
-            const res = await axios.get(url +`/categories`);
-            const data = res.data;
 
-            console.log(data)
-
-            return setCategory(data);
-
-
-        };
         getCategory();
     }, []);
 
@@ -50,10 +57,14 @@ const CategoriesPage = () => {
 
     return (
             <Layout>
-                <Container>
-                    <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
-                    <CategoriesList categories={category}/>
-                </Container>
+                {isLoading ? (
+                    <LoadingScreen/>
+                ) : (
+                    <Container>
+                        <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
+                        <CategoriesList categories={category}/>
+                    </Container>
+                )}
             </Layout>
 
     )

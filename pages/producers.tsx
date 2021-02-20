@@ -3,16 +3,12 @@ import axios from "axios";
 import styled from "styled-components";
 
 import Layout from '../components/Layout'
-import {IItems} from "../interfaces";
+import {IItems, ILoading} from "../interfaces";
 import ProducersList from '../components/ProducersList'
+import LoadingScreen from "../components/LoadingScreen";
 
-const ProducentsPage = () => {
 
-    const [producer, setProducer] = useState<IItems | any>(Array)
-
-    const url = `http://localhost:1337`;
-
-    const Container = styled.section`
+const Container = styled.section`
   background-color: #e0e0e0;
 
   box-sizing: border-box;
@@ -26,21 +22,31 @@ const ProducentsPage = () => {
   
 `;
 
-    const SectionTitle = styled.h2`
+
+
+const SectionTitle = styled.h2`
     
         text-align: center;
-    `
+    `;
+
+
+const ProducentsPage = () => {
+
+    const [producer, setProducer] = useState<IItems | any>(Array)
+    const [isLoading, setIsLoading] = useState<ILoading | any>(true)
+
+    const url = `http://localhost:1337`;
+
+
+
+    const getProducer = async() => {
+        const res = await axios.get(url +`/producers`);
+        const data = res.data;
+
+        return setProducer(data), setIsLoading(!isLoading);
+    };
 
     useEffect(() => {
-
-        const getProducer = async() => {
-            const res = await axios.get(url +`/producers`);
-            const data = res.data;
-
-            console.log(data)
-            return setProducer(data);
-        };
-
         getProducer();
     }, []);
 
@@ -48,11 +54,17 @@ const ProducentsPage = () => {
 
 
     return (
-        <Layout>
-            <Container>
-                <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
-                <ProducersList producers={producer}/>
-            </Container>
+        <Layout> {
+            isLoading ? (
+                <LoadingScreen/>
+            ) : (
+                <Container>
+                    <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
+                    <ProducersList producers={producer}/>
+                </Container>
+            )
+        }
+
         </Layout>
 
     )

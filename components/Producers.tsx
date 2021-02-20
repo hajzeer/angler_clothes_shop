@@ -7,7 +7,9 @@ interface IComponentsProps {
     readonly items: {
         id: number,
         Name: string,
-        Logo: string,
+        Logo: {
+            url: string
+        },
     }
 }
 
@@ -22,10 +24,11 @@ const Container = styled.section`
       background: #e0e0e0;
       box-shadow:  20px 20px 60px #bebebe,
         -20px -20px 60px #ffffff;
-      
+
+      align-self: center;
       display: flex;
       flex-direction: column;
-      align-self: center;
+      align-items: center;
       justify-content: center;
       
       
@@ -66,11 +69,6 @@ const Anchor = styled.a`
     text-decoration: none;
     color: #000000;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
   
     
 `;
@@ -79,7 +77,7 @@ const Anchor = styled.a`
 
 const Producers = React.memo<IComponentsProps>(({items}) => {
 
-    const {isProducerId, setIsProducerId} = useContext(ProducerContext)
+    const {setIsProducerId} = useContext(ProducerContext)
 
     const handleClick = () => {
         const id: number = items.id - 1;
@@ -87,16 +85,17 @@ const Producers = React.memo<IComponentsProps>(({items}) => {
     }
 
     return (
+        <Container>
         <Link href={`/producers/${items.Name}`}>
             <Anchor  onClick={handleClick}>
-                <Container>
+
                     <SpanStyled>
                     <TitleStyle>{items.Name}</TitleStyle>
                     <ImageStyle src={`http://localhost:1337` + items.Logo.url}/>
                     </SpanStyled>
-                </Container>
             </Anchor>
         </Link>
+        </Container>
         )
 });
 

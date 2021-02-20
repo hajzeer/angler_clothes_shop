@@ -8,7 +8,9 @@ interface IComponentsProps {
     readonly items: {
         id: number,
         Name: string,
-        Image: string,
+        Image: {
+            url: string
+        },
     },
 
 
@@ -21,13 +23,6 @@ const Anchor = styled.a`
     text-decoration: none;
     color: #000000;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  
-    
 `;
 
 const Container = styled.section`
@@ -42,7 +37,7 @@ const Container = styled.section`
       box-shadow:  20px 20px 60px #bebebe,
         -20px -20px 60px #ffffff;
       
-  
+      align-self: center;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -85,7 +80,7 @@ const SpanStyled = styled.span`
 const Categories = React.memo<IComponentsProps>(({items}) => {
 
 
-    const {isCategoryId, setIsCategoryId} = useContext(CategoryContext)
+    const {setIsCategoryId} = useContext(CategoryContext)
 
     const handleClick = () => {
         const id: number = items.id - 1;
@@ -93,16 +88,17 @@ const Categories = React.memo<IComponentsProps>(({items}) => {
     }
 
     return (
-            <Link href={`/categories/${items.Name}`}>
-                <Anchor onClick={handleClick}>
-                    <Container>
-                        <SpanStyled>
+                  <Container>
+                      <Link href={`/categories/${items.Name}`}>
+                          <Anchor onClick={handleClick}>
+                          <SpanStyled>
                             <ImageStyle src={`http://localhost:1337` + items.Image.url}/>
                             <TitleStyle>{items.Name}</TitleStyle>
                         </SpanStyled>
+                          </Anchor>
+                      </Link>
                     </Container>
-                </Anchor>
-            </Link>
+
     )
 });
 

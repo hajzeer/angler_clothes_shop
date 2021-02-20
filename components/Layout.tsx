@@ -5,9 +5,8 @@ import Header from "./Header";
 import NavBar from "./NavBar";
 import Cart from "./Cart";
 import Footer from "./Footer";
-import {CategoryContext, CategoryProvider} from "../context/categoryContext";
 
-type Props = {
+interface Props {
   children?: ReactNode
 }
 
@@ -75,6 +74,7 @@ const Layout = React.memo<Props>(({ children}) => {
                   <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                     <link rel="preconnect" href="https://fonts.gstatic.com"/>
                     <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+                    <link href='https://css.gg/spinner-alt.css' rel='stylesheet'/>
                 </Head>
                     <Header isVisible={handleMenu} visibility={handleCart}/>
                     <NavBar isVisible={isVisible} visibility={handleMenu}/>

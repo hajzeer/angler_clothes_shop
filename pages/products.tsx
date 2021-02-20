@@ -4,15 +4,12 @@ import styled from "styled-components";
 
 import Layout from '../components/Layout'
 import ProductsList from "../components/ProductsList";
-import {IItems} from "../interfaces";
+import {IItems, ILoading} from "../interfaces";
+import LoadingScreen from "../components/LoadingScreen";
 
-const ProductsPage = () => {
 
-    const [product, setProduct] = useState<IItems | any>(Array)
 
-    const url = `http://localhost:1337`;
-
-    const Container = styled.section`
+const Container = styled.section`
   background-color: #e0e0e0;
 
   box-sizing: border-box;
@@ -26,10 +23,18 @@ const ProductsPage = () => {
   
 `;
 
-    const SectionTitle = styled.h2`
+const SectionTitle = styled.h2`
     
         text-align: center;
     `
+
+
+const ProductsPage = () => {
+
+    const [product, setProduct] = useState<IItems | any>(Array)
+    const [isLoading, setIsLoading] = useState<ILoading | any>(true)
+
+    const url = `http://localhost:1337`;
 
     useEffect(() => {
 
@@ -37,8 +42,7 @@ const ProductsPage = () => {
             const res = await axios.get(url +`/products`);
             const data = res.data;
 
-            console.log(data)
-            return setProduct(data);
+            return setProduct(data), setIsLoading(!isLoading);
         };
 
         getProduct();
@@ -49,10 +53,15 @@ const ProductsPage = () => {
 
     return (
         <Layout>
-            <Container>
-                <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
-                <ProductsList products={product}/>
-            </Container>
+            {isLoading ? (
+                <LoadingScreen/>
+            ) : (
+                <Container>
+                    <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
+                    <ProductsList products={product}/>
+                </Container>
+            )}
+
         </Layout>
 
     )

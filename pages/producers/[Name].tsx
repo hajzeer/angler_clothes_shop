@@ -4,17 +4,13 @@ import styled from "styled-components";
 
 import Layout from '../../components/Layout'
 import ProductsList from "../../components/ProductsList";
-import {IItems} from "../../interfaces";
+import {IItems, ILoading} from "../../interfaces";
 import {ProducerContext} from "../../context/ProducerContext";
+import LoadingScreen from "../../components/LoadingScreen";
 
-const ProductPage = () => {
 
-    const [product, setProduct] = useState<IItems | any>(Array)
-    const {isProducerId, setIsProducerId} = useContext(ProducerContext)
 
-    const url = `http://localhost:1337`;
-
-    const Container = styled.section`
+const Container = styled.section`
   background-color: #e0e0e0;
 
   box-sizing: border-box;
@@ -28,20 +24,29 @@ const ProductPage = () => {
   
 `;
 
-    const SectionTitle = styled.h2`
+const SectionTitle = styled.h2`
     
         text-align: center;
     `
+const ProductPage = () => {
+
+    const [product, setProduct] = useState<IItems | any>(Array)
+    const [isLoading, setIsLoading] = useState<ILoading | any>(true)
+
+    const {isProducerId} = useContext(ProducerContext)
+
+    const url = `http://localhost:1337`;
+
+
+    const getProduct = async() => {
+        const res = await axios.get(url +`/producers`);
+        const data = res.data;
+
+        return setProduct(data[isProducerId].products), setIsLoading(!isLoading);
+    };
 
     useEffect(() => {
-        const getProduct = async() => {
-            const res = await axios.get(url +`/producers`);
-            const data = res.data;
 
-            console.log(data)
-            console.log(isProducerId)
-            return setProduct(data[isProducerId].products);
-        };
         getProduct();
     }, []);
 
@@ -50,10 +55,14 @@ const ProductPage = () => {
 
     return (
             <Layout>
-                <Container>
-                    <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
-                    <ProductsList products={product}/>
-                </Container>
+                {isLoading ? (
+                    <LoadingScreen/>
+                ) : (
+                    <Container>
+                        <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
+                        <ProductsList products={product}/>
+                    </Container>
+                )}
             </Layout>
 
     )

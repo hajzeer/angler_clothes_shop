@@ -4,17 +4,12 @@ import styled from "styled-components";
 
 import Layout from '../../components/Layout'
 import ProductsList from "../../components/ProductsList";
-import {IItems} from "../../interfaces";
-import {CategoryContext, CategoryProvider} from "../../context/categoryContext";
+import {IItems, ILoading} from "../../interfaces";
+import {CategoryContext} from "../../context/categoryContext";
+import LoadingScreen from "../../components/LoadingScreen";
 
-const ProductPage = () => {
 
-    const [product, setProduct] = useState<IItems | any>(Array)
-    const {isCategoryId, setIsCategoryId} = useContext(CategoryContext);
-
-    const url = `http://localhost:1337`;
-
-    const Container = styled.section`
+const Container = styled.section`
   background-color: #e0e0e0;
 
   box-sizing: border-box;
@@ -28,20 +23,30 @@ const ProductPage = () => {
   
 `;
 
-    const SectionTitle = styled.h2`
+const SectionTitle = styled.h2`
     
         text-align: center;
     `
 
-    useEffect(() => {
-        const getProduct = async() => {
-            const res = await axios.get(url +`/categories`);
-            const data = res.data;
+const ProductPage = () => {
 
-            console.log(data)
-            console.log(isCategoryId)
-            return setProduct(data[isCategoryId].products);
-        };
+    const [product, setProduct] = useState<IItems | any>(Array)
+    const [isLoading, setIsLoading] = useState<ILoading | any>(true)
+
+    const {isCategoryId} = useContext(CategoryContext);
+
+    const url = `http://localhost:1337`;
+
+
+    const getProduct = async() => {
+        const res = await axios.get(url +`/categories`);
+        const data = res.data;
+
+        return setProduct(data[isCategoryId].products), setIsLoading(!isLoading);
+    };
+
+    useEffect(() => {
+
         getProduct();
     }, []);
 
@@ -50,10 +55,14 @@ const ProductPage = () => {
 
     return (
             <Layout>
-                <Container>
-                    <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
-                    <ProductsList products={product}/>
-                </Container>
+                {isLoading ? (
+                    <LoadingScreen/>
+                ) : (
+                    <Container>
+                        <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
+                        <ProductsList products={product}/>
+                    </Container>
+                )}
             </Layout>
 
     )

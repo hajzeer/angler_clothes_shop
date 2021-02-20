@@ -4,16 +4,13 @@ import styled from "styled-components";
 
 import Layout from '../components/Layout'
 import ProductsList from "../components/ProductsList";
-import {IItems} from "../interfaces";
+import {IItems, ILoading} from "../interfaces";
 import Hero from "../components/Hero";
+import LoadingScreen from "../components/LoadingScreen";
 
-const IndexPage = () => {
 
-    const [product, setProduct] = useState<IItems | any>(Array)
 
-    const url = `http://localhost:1337`;
-
-    const Container = styled.section`
+const Container = styled.section`
   background-color: #e0e0e0;
 
   box-sizing: border-box;
@@ -27,20 +24,28 @@ const IndexPage = () => {
   
 `;
 
-    const SectionTitle = styled.h2`
+const SectionTitle = styled.h2`
     
         text-align: center;
     `
 
+const IndexPage = () => {
+
+    const [product, setProduct] = useState<IItems | any>(Array)
+    const [isLoading, setIsLoading] = useState<ILoading | any>(true)
+
+    const url = `http://localhost:1337`;
+
+    const getProduct = async() => {
+        const res = await axios.get(url +`/categories`);
+        const data = res.data;
+
+        return setProduct(data[2].products), setIsLoading(!isLoading);
+    };
+
+
     useEffect(() => {
 
-        const getProduct = async() => {
-            const res = await axios.get(url +`/products`);
-            const data = res.data;
-
-            console.log(data)
-            return setProduct(data);
-        };
 
         getProduct();
     }, []);
@@ -50,11 +55,15 @@ const IndexPage = () => {
 
     return (
         <Layout>
-            <Container>
-                <Hero/>
-                <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
-                <ProductsList products={product}/>
-            </Container>
+            <Hero/>
+                {isLoading ? (
+                    <LoadingScreen/>
+                ) : (
+                    <Container>
+                        <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
+                        <ProductsList products={product}/>
+                    </Container>
+                )}
         </Layout>
 
     )
