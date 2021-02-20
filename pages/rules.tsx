@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Layout from '../components/Layout'
 
 const RulesPage = () => (
-  <Layout title="Products">
+  <Layout>
     <p>
       <Link href="/">
         <a>Go home</a>
