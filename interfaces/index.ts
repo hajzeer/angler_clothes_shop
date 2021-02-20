@@ -13,7 +13,9 @@ export interface IItems {
     readonly Price: number,
     readonly state: number,
     readonly description: string,
-    readonly Images: string,
+    readonly Images: [
+        url: string | any
+    ],
     readonly category: string
 
 }
