@@ -30,7 +30,7 @@ const Container = styled.section`
 const ImageDiv = styled.div`
     
     width: 100%;
-    height: 70vh;
+    height: 60vh;
     background: transparent;
 `;
 
@@ -62,7 +62,7 @@ const Img = styled.img`
     position: fixed;
 
     width: 100%;
-  height: 70vh;
+  height: 60vh;
   border: none;
 
 
