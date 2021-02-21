@@ -46,6 +46,7 @@ const AboutProductContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: -5px -20px 50px #626262;
   
   p {
     margin: 20px;
