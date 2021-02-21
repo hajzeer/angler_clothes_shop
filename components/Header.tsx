@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 
+
+
 const Container = styled.header`
   
   position: fixed;
@@ -44,10 +46,12 @@ const ButtonStyled = styled.button`
   align-items: center;
   justify-content: center;
   z-index: 999999;
+  
+
 
 `;
 
-const HamburgerSpan1 = styled.span`
+const HamburgerSpan1 = styled.span<IStyledProps>`
   position: absolute;
   margin: 0;
   padding: 0;
@@ -57,10 +61,14 @@ const HamburgerSpan1 = styled.span`
   height: 3px;
   background: #3b3b3b;
   border-radius: 25px;
+
+  transform: ${props => props.current ? `translateY(150%) rotate(225deg)` : `translateY(0)`};
+
+  transition: all 0.3s ease-in-out;
   
 `;
 
-const HamburgerSpan2 = styled.span`
+const HamburgerSpan2 = styled.span<IStyledProps>`
   position: absolute;
   margin: 0;
   padding: 0;
@@ -70,6 +78,9 @@ const HamburgerSpan2 = styled.span`
   height: 3px;
   background: #3b3b3b;
   border-radius: 25px;
+  transform: ${props => props.current ? `translateY(-150%) rotate(315deg)` : `translateY(0)`};
+
+  transition: all 0.3s ease-in-out;
   
   
 `;
@@ -107,15 +118,21 @@ const CartLength = styled.div`
     
     transform: rotate(15deg);
   }
-
 `
+
+
 
 interface IProps {
     readonly isVisible: () => void,
-    readonly visibility: () => void
+    readonly visibility: () => void,
+    readonly menuAnimation: boolean,
+}
+interface IStyledProps {
+    readonly  current?: boolean,
 }
 
-const Header = React.memo<IProps>(({isVisible, visibility}) => {
+
+const Header = React.memo<IProps>(({ isVisible, visibility, menuAnimation}) => {
 
 
 
@@ -124,7 +141,6 @@ const Header = React.memo<IProps>(({isVisible, visibility}) => {
             <ButtonStyled onClick={visibility}>
                 <Image
                     src='/cart.svg'
-                    layout='fixed'
                     width={30}
                     height={30}
                     quality={75}
@@ -133,9 +149,9 @@ const Header = React.memo<IProps>(({isVisible, visibility}) => {
                     <p>1</p>
                 </CartLength>
             </ButtonStyled>
-            <ButtonStyled onClick={isVisible}>
-                <HamburgerSpan1/>
-                <HamburgerSpan2/>
+            <ButtonStyled  onClick={isVisible}>
+                <HamburgerSpan1 current={menuAnimation}/>
+                <HamburgerSpan2 current={menuAnimation}/>
             </ButtonStyled>
         </Container>
     )

@@ -13,6 +13,21 @@ interface IComponentsProps {
     }
 }
 
+const Anchor = styled.a`
+  
+    width: 100%;
+    text-decoration: none;
+    color: #000000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  
+    
+`;
+
 const Container = styled.section`
       
       margin: 50px 0 0 0;
@@ -25,7 +40,6 @@ const Container = styled.section`
       box-shadow:  20px 20px 60px #bebebe,
         -20px -20px 60px #ffffff;
 
-      align-self: center;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -63,15 +77,7 @@ const SpanStyled = styled.span`
       }
     `;
 
-const Anchor = styled.a`
-  
-    width: 100%;
-    text-decoration: none;
-    color: #000000;
 
-  
-    
-`;
 
 
 
@@ -85,17 +91,18 @@ const Producers = React.memo<IComponentsProps>(({items}) => {
     }
 
     return (
-        <Container>
+
         <Link href={`/producers/${items.Name}`}>
             <Anchor  onClick={handleClick}>
-
+                <Container>
                     <SpanStyled>
                     <TitleStyle>{items.Name}</TitleStyle>
                     <ImageStyle src={url + items.Logo.url}/>
                     </SpanStyled>
+                </Container>
             </Anchor>
         </Link>
-        </Container>
+
         )
 });
 

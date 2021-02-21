@@ -23,6 +23,11 @@ const Anchor = styled.a`
     text-decoration: none;
     color: #000000;
 
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Container = styled.section`
@@ -37,7 +42,7 @@ const Container = styled.section`
       box-shadow:  20px 20px 60px #bebebe,
         -20px -20px 60px #ffffff;
       
-      align-self: center;
+      
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -88,17 +93,16 @@ const Categories = React.memo<IComponentsProps>(({items}) => {
     }
 
     return (
-                  <Container>
-                      <Link href={`/categories/${items.Name}`}>
-                          <Anchor onClick={handleClick}>
-                          <SpanStyled>
-                            <ImageStyle src={url + items.Image.url}/>
-                            <TitleStyle>{items.Name}</TitleStyle>
-                        </SpanStyled>
-                          </Anchor>
-                      </Link>
-                    </Container>
-
+        <Link href={`/categories/${items.Name}`}>
+            <Anchor onClick={handleClick}>
+                <Container>
+                    <SpanStyled>
+                        <ImageStyle src={url + items.Image.url}/>
+                        <TitleStyle>{items.Name}</TitleStyle>
+                    </SpanStyled>
+                </Container>
+            </Anchor>
+        </Link>
     )
 });
 

@@ -11,7 +11,6 @@ interface Props {
 }
 
 const ContainerLayout = styled.section`
-  background-color: #e0e0e0;
 
   box-sizing: border-box;
   margin: 0;
@@ -28,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
       margin: 0;
       padding: 0;
       background-color: #e0e0e0;
+      
 
       font-family: 'Anonymous Pro', monospace;
     }
@@ -76,7 +76,7 @@ const Layout = React.memo<Props>(({ children}) => {
                     <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
                     <link href={'https://css.gg/spinner-alt.css'} rel='stylesheet'/>
                 </Head>
-                    <Header isVisible={handleMenu} visibility={handleCart}/>
+                    <Header cartAnimation={visibility} menuAnimation={isVisible} isVisible={handleMenu} visibility={handleCart}/>
                     <NavBar isVisible={isVisible} visibility={handleMenu}/>
                     <Cart visibility={visibility} vis={handleCart}/>
                     {children}

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
+import Link from 'next/link'
+import {ProductContext} from "../context/ProductContext";
 
 
 interface IComponentsProps {
@@ -13,6 +15,24 @@ interface IComponentsProps {
         ],
     }
 }
+
+const Anchor = styled.a`
+  
+    width: 100%;
+  height: 100%;
+    text-decoration: none;
+    color: #000000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  
+
+  
+    
+`;
 
 const Container = styled.section`
       
@@ -30,7 +50,7 @@ const Container = styled.section`
       flex-direction: column;
       align-self: center;
       justify-content: center;
-      
+      cursor: pointer;
       
       &:hover { 
         box-shadow: inset  20px 20px 60px #bebebe,
@@ -74,10 +94,7 @@ const ButtonStyled = styled.button`
       padding: 0;
       margin: 0;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+
       
       z-index: 9;
       
@@ -115,30 +132,47 @@ const ButtonStyled = styled.button`
     `;
 
 const ButtonSpanStyled = styled.span`
-      
-      text-align: center;
-      vertical-align: center;
+  
+      width: 100%;
+    height: 100%;
+  
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       position: relative;
 
       font-weight: 900;
       font-size: 30px;
     
-    `
+    `;
 
 
 
 const Products = React.memo<IComponentsProps>(({items}) => {
+
+
+
+    const {setIsProductId} = useContext(ProductContext)
     const url = `https://angler-clothes-shop.herokuapp.com`
+    const handleClick = () => {
+        const id: number = items.id - 1;
+        setIsProductId(id)
+    }
     return (
         <Container>
+        <Link href={`/products/${items.Name}`}>
+            <Anchor onClick={handleClick}>
             <SpanStyled>
             <TitleStyle>{items.Name}</TitleStyle>
             <ImageStyle src={url + items.Images[0].url}/>
             <PriceStyle>{items.Price} PLN</PriceStyle>
-                <ButtonStyled>
-                <ButtonSpanStyled>+</ButtonSpanStyled>
-                </ButtonStyled>
             </SpanStyled>
+            </Anchor>
+        </Link>
+            <ButtonStyled>
+                <ButtonSpanStyled>+</ButtonSpanStyled>
+            </ButtonStyled>
         </Container>
         )
 });

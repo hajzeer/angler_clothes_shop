@@ -51,6 +51,10 @@ export interface IProducerData {
     readonly setIsProducerId:  void
 }
 
+export interface IProductData {
+    readonly isProductId: number | null,
+    readonly setIsProductId:  void
+}
 export interface IProps {
     readonly children?: ReactNode,
 }
