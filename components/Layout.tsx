@@ -76,7 +76,7 @@ const Layout = React.memo<Props>(({ children}) => {
                     <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
                     <link href={'https://css.gg/spinner-alt.css'} rel='stylesheet'/>
                 </Head>
-                    <Header cartAnimation={visibility} menuAnimation={isVisible} isVisible={handleMenu} visibility={handleCart}/>
+                    <Header menuAnimation={isVisible} isVisible={handleMenu} visibility={handleCart}/>
                     <NavBar isVisible={isVisible} visibility={handleMenu}/>
                     <Cart visibility={visibility} vis={handleCart}/>
                     {children}
