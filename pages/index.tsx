@@ -60,7 +60,7 @@ const IndexPage = () => {
                     <LoadingScreen/>
                 ) : (
                     <Container>
-                        <SectionTitle>Sprawdź co mamy w ofercie</SectionTitle>
+                        <SectionTitle>Ulubione produkty</SectionTitle>
                         <ProductsList products={product}/>
                     </Container>
                 )}
