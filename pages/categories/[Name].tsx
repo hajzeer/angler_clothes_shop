@@ -38,10 +38,10 @@ const ProductPage = () => {
     const url = `https://angler-clothes-shop.herokuapp.com`
 
     const getProduct = async() => {
-        const res = await axios.get(url +`/categories`);
+        const res = await axios.get(url +`/categories/${isCategoryId}`);
         const data = res.data;
 
-        return setProduct(data[isCategoryId].products), setIsLoading(!isLoading);
+        return setProduct(data.products), setIsLoading(!isLoading);
     };
 
     useEffect(() => {

@@ -86,7 +86,7 @@ const Producers = React.memo<IComponentsProps>(({items}) => {
     const {setIsProducerId} = useContext(ProducerContext)
     const url = `https://angler-clothes-shop.herokuapp.com`
     const handleClick = () => {
-        const id: number = items.id - 1;
+        const id: number = items.id;
         setIsProducerId(id)
     }
 

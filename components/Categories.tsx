@@ -88,7 +88,7 @@ const Categories = React.memo<IComponentsProps>(({items}) => {
     const {setIsCategoryId} = useContext(CategoryContext)
     const url = `https://angler-clothes-shop.herokuapp.com`
     const handleClick = () => {
-        const id: number = items.id - 1;
+        const id: number = items.id;
         setIsCategoryId(id)
     }
 

@@ -156,7 +156,7 @@ const Products = React.memo<IComponentsProps>(({items}) => {
     const {setIsProductId} = useContext(ProductContext)
     const url = `https://angler-clothes-shop.herokuapp.com`
     const handleClick = () => {
-        const id: number = items.id - 1;
+        const id: number = items.id;
         setIsProductId(id)
     }
     return (

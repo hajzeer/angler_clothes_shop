@@ -33,11 +33,9 @@ const ProductDetailPage = () => {
 
     const url = `https://angler-clothes-shop.herokuapp.com`
     const getProduct = async() => {
-        const res = await axios.get(url+`/products`);
+        const res = await axios.get(url+`/products/${isProductId}`);
         const data = res.data;
-        console.log(data[isProductId])
-
-        return setProduct(data[isProductId]), setIsLoading(!isLoading);
+        return setProduct(data), setIsLoading(!isLoading);
     };
 
     useEffect(() => {
