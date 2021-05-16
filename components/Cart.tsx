@@ -40,11 +40,7 @@ const InnerDivStyled = styled.div`
 
 padding: 20px 0;
     width: 90%;
-    height: 80vh;
-  top: 0;
-  right: 0;
-
-
+    height: 70vh;
   overflow: auto;
 
 
@@ -54,12 +50,12 @@ padding: 20px 0;
 const FinalDivStyled = styled.div`
 
 width: 100%;
-height: 20vh;
+height: 30vh;
 
 margin: 30px; 
 display: flex;
   flex-direction: row;
-  align-items: flex;
+  align-items: flex-start;
   justify-content: space-around;
 `
 
