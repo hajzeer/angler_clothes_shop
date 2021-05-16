@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from "styled-components";
+import { CartContext } from '../context/CartContext';
 
 export interface IComponentsProps {
     readonly items: {
@@ -30,7 +31,7 @@ const Container = styled.section`
 const ImageDiv = styled.div`
     
     width: 100%;
-    height: 60vh;
+    height: 55vh;
     background: transparent;
 `;
 
@@ -63,7 +64,7 @@ const Img = styled.img`
     position: fixed;
 
     width: 100%;
-  height: 60vh;
+  height: auto;
   border: none;
 
 
@@ -126,6 +127,17 @@ const ButtonStyled = styled.button`
 
 
 const ProductDetail = React.memo<IComponentsProps>(({items}) => {
+
+  const {setCart} = useContext(CartContext)
+
+  const handleAdd = () => {
+    const products = {
+      name: items.Name,
+      price: items.Price,
+    }
+    setCart((currentState: []) => [...currentState, products])
+  }
+
     const url = `https://angler-clothes-shop.herokuapp.com`
     return(
         <Container>
@@ -136,7 +148,7 @@ const ProductDetail = React.memo<IComponentsProps>(({items}) => {
             <SubjectStyled>{items.Name}</SubjectStyled>
                 <p>{items.Description}</p>
                 <h2>{items.Price} PLN</h2>
-                <ButtonStyled>
+                <ButtonStyled onClick={handleAdd}>
                     <span>
                         Dodaj do koszyka
                     </span>

@@ -9,7 +9,7 @@ interface ProductsListProps {
     categories: Array<IItemsOfCategory>
 }
 
-const CategoriesList = React.memo<ProductsListProps>(({categories}: ProductsListProps) => {
+const CategoriesList = React.memo<ProductsListProps>(({categories}) => {
 
     const Container = styled.section`
       

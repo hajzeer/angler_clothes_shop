@@ -1,10 +1,11 @@
-import React, {ReactNode, useState} from 'react'
+import React, {ReactNode, useState, useContext} from 'react'
 import Head from 'next/head'
 import styled, {createGlobalStyle} from "styled-components";
 import Header from "./Header";
 import NavBar from "./NavBar";
 import Cart from "./Cart";
 import Footer from "./Footer";
+import { CartContext } from '../context/CartContext';
 
 interface Props {
   children?: ReactNode,
@@ -42,6 +43,8 @@ const Layout = React.memo<Props>(({ children}) => {
     const [isVisible, setIsVisible] = useState(false)
     const [visibility, setVisibility] = useState(false)
 
+    const {isCart} = useContext(CartContext);
+
     const handleMenu = () => {
         if(!isVisible) {
             setIsVisible(true);
@@ -78,7 +81,7 @@ const Layout = React.memo<Props>(({ children}) => {
                 </Head>
                     <Header menuAnimation={isVisible} isVisible={handleMenu} visibility={handleCart}/>
                     <NavBar isVisible={isVisible} visibility={handleMenu}/>
-                    <Cart visibility={visibility} vis={handleCart}/>
+                    <Cart visibility={visibility} vis={handleCart} items={isCart}/>
                     {children}
                     <Footer/>
             </ContainerLayout>

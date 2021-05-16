@@ -4,17 +4,20 @@ import {CategoryProvider} from "../context/categoryContext";
 import {ProducerProvider} from "../context/ProducerContext";
 import React from "react";
 import {ProductProvider} from "../context/ProductContext";
+import { CartProvider } from '../context/CartContext';
 //import App from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <CategoryProvider>
-            <ProducerProvider>
-                <ProductProvider>
-            <Component {...pageProps} />
-                </ProductProvider>
-            </ProducerProvider>
-        </CategoryProvider>
+        <CartProvider>
+            <CategoryProvider>
+                <ProducerProvider>
+                    <ProductProvider>
+                <Component {...pageProps} />
+                    </ProductProvider>
+                </ProducerProvider>
+            </CategoryProvider>
+        </CartProvider>
     )
 }
 

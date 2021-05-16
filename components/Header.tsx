@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { CartContext } from '../context/CartContext';
 
 
 
@@ -134,7 +135,7 @@ interface IStyledProps {
 
 const Header = React.memo<IProps>(({ isVisible, visibility, menuAnimation}) => {
 
-
+const {isCart} = useContext(CartContext)
 
     return (
         <Container>
@@ -146,7 +147,7 @@ const Header = React.memo<IProps>(({ isVisible, visibility, menuAnimation}) => {
                     quality={75}
                 />
                 <CartLength>
-                    <p>1</p>
+                    <p>{isCart.length}</p>
                 </CartLength>
             </ButtonStyled>
             <ButtonStyled  onClick={isVisible}>

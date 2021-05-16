@@ -19,6 +19,13 @@ export interface IItems {
     readonly category: string
 
 }
+export interface IItemsOfCart {
+  
+        readonly id: number,
+        readonly name: string,
+        readonly price: number,
+        readonly index: number,
+}
 
 export interface ILoading {
     readonly isLoading: boolean,
@@ -44,6 +51,11 @@ export interface IItemsOfProducers {
 export interface ICategoryData {
     readonly isCategoryId: number | null,
     readonly setIsCategoryId:  void
+}
+
+export interface ICartData {
+    readonly cart: [] | null,
+    readonly setCart:  void
 }
 
 export interface IProducerData {

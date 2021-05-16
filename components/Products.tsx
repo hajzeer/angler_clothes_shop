@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import styled from 'styled-components';
 import Link from 'next/link'
 import {ProductContext} from "../context/ProductContext";
+import {CartContext} from '../context/CartContext';
 
 
 interface IComponentsProps {
@@ -154,11 +155,24 @@ const Products = React.memo<IComponentsProps>(({items}) => {
 
 
     const {setIsProductId} = useContext(ProductContext)
+    const {setCart} = useContext(CartContext)
     const url = `https://angler-clothes-shop.herokuapp.com`
+
     const handleClick = () => {
         const id: number = items.id;
         setIsProductId(id)
     }
+
+    const handleAdd = () => {
+      const products = {
+        name: items.Name,
+        price: items.Price,
+      }
+      setCart((currentState: []) => [...currentState, products])
+    }
+
+
+
     return (
         <Container>
         <Link href={`/products/${items.Name}`}>
@@ -170,7 +184,7 @@ const Products = React.memo<IComponentsProps>(({items}) => {
             </SpanStyled>
             </Anchor>
         </Link>
-            <ButtonStyled>
+            <ButtonStyled onClick={handleAdd}>
                 <ButtonSpanStyled>+</ButtonSpanStyled>
             </ButtonStyled>
         </Container>
