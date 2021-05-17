@@ -138,11 +138,10 @@ const ProductDetail = React.memo<IComponentsProps>(({items}) => {
     setCart((currentState: []) => [...currentState, products])
   }
 
-    const url = `https://angler-clothes-shop.herokuapp.com`
     return(
         <Container>
             <ImageDiv>
-                <Img src={url + items.Images[0].url} />
+                <Img src={items.Images[0].url} />
             </ImageDiv>
             <AboutProductContainer>
             <SubjectStyled>{items.Name}</SubjectStyled>

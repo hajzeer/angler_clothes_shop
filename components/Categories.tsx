@@ -86,7 +86,6 @@ const Categories = React.memo<IComponentsProps>(({items}) => {
 
 
     const {setIsCategoryId} = useContext(CategoryContext)
-    const url = `https://angler-clothes-shop.herokuapp.com`
     const handleClick = () => {
         const id: number = items.id;
         setIsCategoryId(id)
@@ -97,7 +96,7 @@ const Categories = React.memo<IComponentsProps>(({items}) => {
             <Anchor onClick={handleClick}>
                 <Container>
                     <SpanStyled>
-                        <ImageStyle src={url + items.Image.url}/>
+                        <ImageStyle src={items.Image.url}/>
                         <TitleStyle>{items.Name}</TitleStyle>
                     </SpanStyled>
                 </Container>

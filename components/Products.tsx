@@ -156,7 +156,6 @@ const Products = React.memo<IComponentsProps>(({items}) => {
 
     const {setIsProductId} = useContext(ProductContext)
     const {setCart} = useContext(CartContext)
-    const url = `https://angler-clothes-shop.herokuapp.com`
 
     const handleClick = () => {
         const id: number = items.id;
@@ -179,7 +178,7 @@ const Products = React.memo<IComponentsProps>(({items}) => {
             <Anchor onClick={handleClick}>
             <SpanStyled>
             <TitleStyle>{items.Name}</TitleStyle>
-            <ImageStyle src={url + items.Images[0].url}/>
+            <ImageStyle src={items.Images[0].url}/>
             <PriceStyle>{items.Price} PLN</PriceStyle>
             </SpanStyled>
             </Anchor>
