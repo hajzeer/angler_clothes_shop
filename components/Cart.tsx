@@ -43,9 +43,11 @@ padding: 20px 0;
     width: 90%;
     height: 60vh;
   overflow: auto;
-  text-align: center;
 
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 
 `
 
