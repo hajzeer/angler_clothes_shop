@@ -91,15 +91,16 @@ const CartLength = styled.div`
     
   position: absolute;
   top: 20px;
-  left: 100px;
+  left: 52%;
   
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
   background: #ffffff;
   
   border-radius: 100%;
   
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 9999999;
@@ -107,10 +108,6 @@ const CartLength = styled.div`
   p {
     width: 100%;
     height: 100%;
-    text-align: center;
-    vertical-align: center;
-    align-self: center;
-    justify-self: center;
 
     font-family: 'Anonymous Pro', monospace;
     color: #000;

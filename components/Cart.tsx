@@ -43,6 +43,7 @@ padding: 20px 0;
     width: 90%;
     height: 60vh;
   overflow: auto;
+  text-align: center;
 
 
 
@@ -127,13 +128,23 @@ const Cart = React.memo<IComponentProps>(({visibility, items}) => {
     })
     return (
         <Container current={visibility}>
+            
             <InnerDivStyled>
-            {
-                items.map(item => {
-                    return (
-                        <CartItems items={item} key={item.id}/>
-                    )})
+            {isCart.length === 0 ? (
+                <p>
+                    Twój koszyk jest pusty
+                </p>
+            ) : (
+                
+                
+                    items.map(item => {
+                        return (
+                            <CartItems items={item} key={item.id}/>
+                        )})
+                
+            )
             }
+            
             </InnerDivStyled>
             <FinalDivStyled>
                 {isCart.length === 0 ? (
