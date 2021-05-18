@@ -17,7 +17,7 @@ const Container = styled.section`
 
 width: 100%;
 height: 100px;
-
+margin: 10px 0 10px 0;
 display: flex;
 flex-direction: row;
 justify-content: space-between;

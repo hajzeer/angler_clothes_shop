@@ -1,5 +1,6 @@
-import React, {createContext, useState} from "react";
+import React, {createContext} from "react";
 import {ICartData, IProps} from "../interfaces";
+import {useLocalStorage} from '../hooks/useLocalStorage';
 
 
 
@@ -9,7 +10,9 @@ const defaultValue: [] = []
 
 
  const CartProvider = React.memo<IProps>(({children}) => {
-    const [isCart, setCart] = useState<ICartData | any>(defaultValue)
+
+
+    const [isCart, setCart] = useLocalStorage(defaultValue, defaultValue)
 
     return (
         <CartContext.Provider value={{isCart, setCart}}>

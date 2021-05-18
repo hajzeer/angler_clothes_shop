@@ -1,7 +1,6 @@
-import React, {createContext, useState} from "react";
+import React, {createContext} from "react";
 import {ICategoryData, IProps} from "../interfaces";
-
-
+import {useLocalStorage} from '../hooks/useLocalStorage';
 
 const defaultValue: number = 0
 
@@ -9,7 +8,9 @@ const defaultValue: number = 0
 
 
  const CategoryProvider = React.memo<IProps>(({children}) => {
-    const [isCategoryId, setIsCategoryId] = useState<ICategoryData | any>(defaultValue)
+    const [isCategoryId, setIsCategoryId] = useLocalStorage(defaultValue,defaultValue)
+
+    
 
     return (
         <CategoryContext.Provider value={{isCategoryId, setIsCategoryId}}>
