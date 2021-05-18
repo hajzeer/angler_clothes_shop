@@ -128,7 +128,7 @@ const ButtonStyled = styled.button`
 
 const ProductDetail = React.memo<IComponentsProps>(({items}) => {
 
-  const {isCart, setCart} = useContext(CartContext)
+  const {setCart} = useContext(CartContext)
 
   const handleAdd = () => {
     let value: number = 1
