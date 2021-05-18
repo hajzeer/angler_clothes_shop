@@ -39,7 +39,7 @@ const Footer = () => {
             </p>
                 <p>
                 Polityka prywatności: <br/>
-            © 2020 Created by hiThere Studio for Fishing Clothes <br/>
+            © {new Date().getFullYear()} Created by hiThere Studio for Fishing Clothes <br/>
             All rights reserveds
                 </p>
         </FooterContainer>
