@@ -34,13 +34,14 @@ const Container = styled.section<IStyledProps>`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  
 `;
 
 const InnerDivStyled = styled.div`
 
 padding: 20px 0;
     width: 90%;
-    height: 70vh;
+    height: 60vh;
   overflow: auto;
 
 
@@ -51,18 +52,16 @@ const FinalDivStyled = styled.div`
 
 width: 100%;
 height: 30vh;
-
-margin: 30px; 
+padding: 20px; 
 display: flex;
   flex-direction: row;
-  align-items: flex-start;
   justify-content: space-around;
+
 `
 
 const ButtonStyled = styled.button`
-
-      padding: 0;
       
+      padding: 0;
       width: 100px;
       height: 50px;
       border: none;
@@ -70,9 +69,6 @@ const ButtonStyled = styled.button`
       background: #b0b0b0;
       box-shadow:  5px 5px 10px #808080,
           -5px -5px 10px #808080;
-
-
-      
       cursor: pointer;
       outline: none;
   
@@ -116,7 +112,6 @@ const ButtonStyled = styled.button`
 const Cart = React.memo<IComponentProps>(({visibility, items}) => {
     const {isCart} = useContext(CartContext);
     const [isFinalPrice, setIsFinalPrice] = useState(0);
-   
 
     useEffect(() => {
         let total: number = 0;
@@ -124,9 +119,12 @@ const Cart = React.memo<IComponentProps>(({visibility, items}) => {
             total += isCart[el].price
             const value: number = parseFloat(total.toFixed(2));
             setIsFinalPrice(value);
+
+                
+
+            
        }
     })
-
     return (
         <Container current={visibility}>
             <InnerDivStyled>
@@ -147,7 +145,7 @@ const Cart = React.memo<IComponentProps>(({visibility, items}) => {
                     {isFinalPrice} PLN
                     </p>
                 )}
-            <ButtonStyled>
+                <ButtonStyled>
                     <span>
                         Zamów
                     </span>

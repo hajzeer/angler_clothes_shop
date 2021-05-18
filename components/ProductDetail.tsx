@@ -128,12 +128,16 @@ const ButtonStyled = styled.button`
 
 const ProductDetail = React.memo<IComponentsProps>(({items}) => {
 
-  const {setCart} = useContext(CartContext)
+  const {isCart, setCart} = useContext(CartContext)
 
   const handleAdd = () => {
+    let value: number = 1
+    
     const products = {
       name: items.Name,
       price: items.Price,
+      Images: items.Images[0].url,
+      capacity: value,
     }
     setCart((currentState: []) => [...currentState, products])
   }

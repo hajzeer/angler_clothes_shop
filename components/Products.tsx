@@ -95,7 +95,10 @@ const ButtonStyled = styled.button`
       padding: 0;
       margin: 0;
 
-
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       
       z-index: 9;
       
@@ -106,13 +109,11 @@ const ButtonStyled = styled.button`
       border: none;
       
       align-self: flex-end;
-      border-radius: 150px;
+      border-radius: 100%;
       background: #b0b0b0;
       box-shadow:  5px 5px 10px #969696,
         -5px -5px 10px #cacaca;
 
-
-      
       cursor: pointer;
       outline: none;
   color: #2e2e2e;
@@ -133,18 +134,35 @@ const ButtonStyled = styled.button`
     `;
 
 const ButtonSpanStyled = styled.span`
-  
       width: 100%;
     height: 100%;
-  
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
 
-      font-weight: 900;
-      font-size: 30px;
+      &::before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 4px;
+        background: #3b3b3b;
+        top: 50%;
+        left: 30%;
+        border-radius: 30px;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 4px;
+        background: #3b3b3b;
+        top: 50%;
+        left: 30%;
+        transform: rotate(90deg);
+        border-radius: 30px;
+
+      }
     
     `;
 
@@ -163,16 +181,17 @@ const Products = React.memo<IComponentsProps>(({items}) => {
     }
 
     const handleAdd = () => {
-      const products = {
-        name: items.Name,
-        price: items.Price,
-      }
-      setCart((currentState: []) => [...currentState, products])
-    }
+          const products = {
+            name: items.Name,
+            price: items.Price,
+            Images: items.Images[0].url,
+            capacity: 1,
+          }
+          setCart((currentState: []) => [...currentState, products])
+        }
 
 
-
-    return (
+        return (
         <Container>
         <Link href={`/products/${items.Name}`}>
             <Anchor onClick={handleClick}>
@@ -184,7 +203,7 @@ const Products = React.memo<IComponentsProps>(({items}) => {
             </Anchor>
         </Link>
             <ButtonStyled onClick={handleAdd}>
-                <ButtonSpanStyled>+</ButtonSpanStyled>
+                <ButtonSpanStyled></ButtonSpanStyled>
             </ButtonStyled>
         </Container>
         )

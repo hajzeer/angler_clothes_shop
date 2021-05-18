@@ -25,6 +25,8 @@ export interface IItemsOfCart {
         readonly name: string,
         readonly price: number,
         readonly index: number,
+        readonly Images: string | any,
+        readonly capacity: number,
 }
 
 export interface ILoading {
