@@ -193,7 +193,7 @@ const Products = React.memo<IComponentsProps>(({items}) => {
 
         return (
         <Container>
-        <Link href={`/products/${items.Name}`}>
+        <Link href={`/products/${items.id}`}>
             <Anchor onClick={handleClick}>
             <SpanStyled>
             <TitleStyle>{items.Name}</TitleStyle>
